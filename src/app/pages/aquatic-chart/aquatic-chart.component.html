@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row text-center"><h3 *ngIf="content"><small>Biểu đồ dữ liệu của thiết bị </small> {{content[0].device.deviceId}} <small>từ</small> {{content[0].createDate | date:'short'}} <small>đến</small> {{content[content.length-1].createDate | date:'short'}}</h3></div>
+  <div class="row">
+    <div class="col-md-6">
+      <canvas id="dissolvedOxygenChart"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="humidityChart"></canvas>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <canvas id="temperatureChart"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="PHChart"></canvas>
+    </div>
+  </div>
+</div>
+

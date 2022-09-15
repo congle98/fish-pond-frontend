@@ -1,0 +1,8 @@
+version: '2'
+services:
+  fishpond-frontend:
+    image: fishpond-frontend
+    container_name: fishpond-frontend
+    build: .
+    ports:
+      - "80:80"

@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-8"><h2>Thông tin chỉ số đo mới nhất của các thiết bị</h2></div>
+          <div class="col-sm-4">
+            <div class="search-box">
+              <i class="material-icons">&#xE8B6;</i>
+              <input type="text" class="form-control" [(ngModel)]="pageableRequest.search" (change)="handleSearch()" placeholder="Nhập từ khóa&hellip;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+          <th (click)="handleSort(sortDeviceID)">Mã thiết bị<i class="fa fa-sort"></i></th>
+          <th (click)="handleSort(sortFishPondName)">Ao cá<i class="fa fa-sort"></i></th>
+          <th (click)="handleSort(sortCreateDate)">Ngày cập nhập<i class="fa fa-sort"></i></th>
+          <th (click)="handleSort(sortDissolvedOxygen)">Oxy hòa tan (mg/L)<i class="fa fa-sort"></i></th>
+          <th (click)="handleSort(sortHumidity)">Độ ẩm (g/m³)<i class="fa fa-sort"></i></th>
+          <th (click)="handleSort(sortTemperature)">Nhiệt độ (℃)<i class="fa fa-sort"></i></th>
+          <th (click)="handleSort(sortPH)">Độ PH (PH)<i class="fa fa-sort"></i></th>
+          <th (click)="handleSort(sortEvaluation)">Đánh giá<i class="fa fa-sort"></i></th>
+          <th>Biểu đồ chi tiết</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let aquaticInfo of content">
+          <td>
+            <button pButton pRipple label="{{aquaticInfo.device.deviceId}}" class="btn-evaluation p-button-info p-button-text" type="button" [routerLink]="['/quan-ly/dl-bieudo/'+aquaticInfo.device.id]"></button>
+           </td>
+          <td>{{aquaticInfo.device.fishPond.name}}</td>
+          <td>{{aquaticInfo.createDate | date:'short'}}</td>
+          <td>{{aquaticInfo.dissolvedOxygen}}</td>
+          <td>{{aquaticInfo.humidity}}</td>
+          <td>{{aquaticInfo.temperature}}</td>
+          <td>{{aquaticInfo.ph}}</td>
+          <td> <button pButton pRipple type="button" label="{{aquaticInfo.evaluation}}" class="btn-evaluation p-button-raised {{checkColor(aquaticInfo.evaluation)}}"></button></td>
+          <td>
+            <a   type="button" [routerLink]="['/quan-ly/dl-bieudo/'+aquaticInfo.device.id]" ><i class="material-icons" style="font-size: 35px;color: #3B82F6">timeline</i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="clearfix">
+          <div class="hint-text">Hiển thị từ <b>{{pageableRequest.page * pageableRequest.size}} - {{pageableRequest.size * (pageableRequest.page+1)}}</b> trong tổng số <b>{{pageableRequest.totalElements}}</b> </div>
+        <ul class="pagination">
+          <li class="page-item"><a (click)="changePage(-1)"><i class="fa fa-angle-double-left" style="font-size: 30px"></i></a></li>
+          <li class="page-item active" ><a disabled="true" style="color: #f0f0f0; margin-top: 5px" class="page-link">{{pageableRequest.page+1}}</a></li>
+          <li class="page-item"><a (click)="changePage(1)"><i class="fa fa-angle-double-right" style="font-size: 30px"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
